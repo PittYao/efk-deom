@@ -1,0 +1,8 @@
+logging:
+  file:
+    # 日志文件夹名称
+    name: logs
+
+spring:
+  profiles:
+    active: test
