@@ -1,0 +1,20 @@
+# 测试mybatis日志
+GET http://localhost:8080/mybatis?data=ff
+Accept: application/json
+
+###
+
+# 测试 不同等级日志
+GET http://localhost:8080/hello
+Accept: application/json
+
+###
+# 测试post日志
+POST http://localhost:8080/post
+Content-Type: application/json
+
+{
+  "name": "范尧"
+}
+
+###

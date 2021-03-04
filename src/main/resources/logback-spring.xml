@@ -13,7 +13,7 @@
     <property name="APP_NAME" value="logstash"/>
     <!-- 定义全局参数常量 -->
     <property name="log.maxHistory" value="30"/><!-- 30表示最多保存30天 -->
-    <property name="log.maxFileSize" value="5KB"/><!-- 日志单个文件打到10M就分割为另一个文件 -->
+    <property name="log.maxFileSize" value="10MB"/><!-- 日志单个文件打到10M就分割为另一个文件 -->
 
     <!--日志文件保存路径-->
     <property name="LOG_FILE_PATH" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/logs}"/>
@@ -154,8 +154,20 @@
 
     <!-- 4. 最终的策略 -->
 
-    <!-- 4.1 测试环境:输出到文档 -->
+    <!-- 4.1 开发环境:输出到文档 -->
     <!-- 根是info级别，debug的不显示    -->
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="DEBUG_FILE"/>
+            <appender-ref ref="INFO_FILE"/>
+            <appender-ref ref="WARN_FILE"/>
+            <appender-ref ref="ERROR_FILE"/>
+            <appender-ref ref="LOGSTASH"/>
+        </root>
+    </springProfile>
+
+    <!-- 4.2 测试环境:输出到文档 -->
     <springProfile name="test">
         <root level="info">
             <appender-ref ref="CONSOLE"/>
@@ -168,7 +180,7 @@
     </springProfile>
 
     <!-- 4.2 生产环境:输出到文档 -->
-    <!--<springProfile name="pro">
+    <springProfile name="pro">
         <root level="info">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="DEBUG_FILE"/>
@@ -177,5 +189,5 @@
             <appender-ref ref="ERROR_FILE"/>
             <appender-ref ref="LOGSTASH"/>
         </root>
-    </springProfile>-->
+    </springProfile>
 </configuration>

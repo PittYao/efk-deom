@@ -153,4 +153,7 @@
  logstash -f ..\config\logstash-springboot.conf
  ```
  
+ ### 4. druid
+ - 访问　localhost:8080/druid
+ - 账号密码: admin
  
