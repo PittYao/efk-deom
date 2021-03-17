@@ -1,4 +1,4 @@
-#elk demo
+#efk demo
 ## 1.logback
 ### 1.1 logback-spring.xml收集日志  
    

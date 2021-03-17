@@ -1,6 +1,6 @@
 logging:
   file:
-    # ��־�ļ�������
+    # 日志文件夹名称
     name: logs
 
 spring:
@@ -11,22 +11,22 @@ spring:
     #  ---------- hikari config ---------- #
     hikari:
       pool-name: KevinHikariPool
-      #�����������С�ڵ���0�ᱻ����ΪĬ��ֵ10��������С��1�ᱻ����Ϊminimum-idle��ֵ
+      #最大连接数，小于等于0会被重置为默认值10；大于零小于1会被重置为minimum-idle的值
       maximum-pool-size: 150
-      #��С�������ӣ�Ĭ��ֵ10��С��0�����maximum-pool-size����������Ϊmaximum-pool-size
+      #最小空闲连接，默认值10，小于0或大于maximum-pool-size，都会重置为maximum-pool-size
       minimum-idle: 20
-      #���ӳ�ʱʱ��:���룬С��250���룬��������ΪĬ��ֵ30��
+      #连接超时时间:毫秒，小于250毫秒，否则被重置为默认值30秒
       connection-timeout: 60000
-      #�������ӳ�ʱʱ�䣬Ĭ��ֵ600000��10���ӣ������ڵ���max-lifetime��max-lifetime>0���ᱻ����Ϊ0��
-      # ������0��С��10�룬�ᱻ����Ϊ10�롣
-      # ֻ�п�����������������������ҿ���ʱ�䳬����ֵ���Żᱻ�ͷ�
+      #空闲连接超时时间，默认值600000（10分钟），大于等于max-lifetime且max-lifetime>0，会被重置为0；
+      # 不等于0且小于10秒，会被重置为10秒。
+      # 只有空闲连接数大于最大连接数且空闲时间超过该值，才会被释放
       idle-timeout: 500000
-      #���������ʱ��.������0��С��30�룬�ᱻ����ΪĬ��ֵ30����.����Ӧ�ñ�mysql���õĳ�ʱʱ���
+      #连接最大存活时间.不等于0且小于30秒，会被重置为默认值30分钟.设置应该比mysql设置的超时时间短
       max-lifetime: 540000
-      #���Ӳ��Բ�ѯ
+      #连接测试查询
       connection-test-query: SELECT 1
 
-# -------------  ���� mybatis-plus ----------#
+# -------------  配置 mybatis-plus ----------#
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true

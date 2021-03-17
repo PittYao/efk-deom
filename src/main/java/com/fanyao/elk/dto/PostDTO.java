@@ -16,5 +16,4 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PostDTO {
     private String name;
-
 }
